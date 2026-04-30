@@ -1,0 +1,9 @@
+node_modules
+.env
+.env.*  // .env start all files
+!.env.example   // !-ai folder bade
+dist
+
+/generated/prisma
+
+/src/generated
