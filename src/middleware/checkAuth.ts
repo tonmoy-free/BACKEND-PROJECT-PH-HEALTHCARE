@@ -6,6 +6,7 @@ import status from "http-status";
 import { prisma } from "../app/lib/prisma";
 import { jwtUtils } from "../app/utils/jwt";
 import { envVars } from "../app/config/env";
+import { role } from "better-auth/client";
 
 export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -61,7 +62,11 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
                 }
 
 
-
+                req.user = {
+                    userId: user.id,
+                    role: user.role,
+                    email: user.email,
+                }
             }
 
             const accessToken = CookieUtils.getCookie(req, 'accessToken');
@@ -85,7 +90,7 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
         }
 
         if (authRoles.length > 0 && !authRoles.includes(verifiedToken.data!.role as Role)) {
-            throw new AppError(status.FORBIDDEN, 'You do not have permission to access this resouce');
+            throw new AppError(status.FORBIDDEN, 'You do not have permission to access this resorsuce');
         }
 
         next();

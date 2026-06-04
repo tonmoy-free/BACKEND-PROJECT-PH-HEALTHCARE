@@ -1,13 +1,25 @@
 import { Router } from "express";
 import { DoctorController } from "./doctor.controller";
+import { Role } from "../../../generated/prisma/enums";
+import { checkAuth } from "../../../middleware/checkAuth";
+import { updateDoctorZodSchema } from "./doctor.validation";
+import { validateRequest } from "../../shared/validateRequest";
 
 const router = Router();
 
-router.get("/", DoctorController.getAllDoctors);
-// router.get("/:id", DoctorController.getAllDoctorById);
-// router.put("/:id", DoctorController.updsatedoctor);
-// router.patch("/:id", DoctorController.updsatedoctor);
-// router.delete("/:id", DoctorController.updsatedoctor);
+
+router.get("/",
+    // checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    DoctorController.getAllDoctors);
+router.get("/:id",
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    DoctorController.getDoctorById);
+router.patch("/:id",
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    validateRequest(updateDoctorZodSchema), DoctorController.updateDoctor);
+router.delete("/:id",
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    DoctorController.deleteDoctor);
 
 
 

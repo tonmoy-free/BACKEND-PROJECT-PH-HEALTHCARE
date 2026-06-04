@@ -7,7 +7,7 @@ model User {
   status             UserStatus @default(ACTIVE)
   needPasswordChange Boolean    @default(false)
   isDeleted          Boolean    @default(false)
-  deletedsAt         DateTime?
+  deletedAt          DateTime?
   image              String?
   createdAt          DateTime   @default(now())
   updatedAt          DateTime   @updatedAt
@@ -15,6 +15,7 @@ model User {
   accounts           Account[]
   patient            Patient?
   doctor             Doctor?
+  admin              Admin?
 
   @@unique([email])
   @@map("user")

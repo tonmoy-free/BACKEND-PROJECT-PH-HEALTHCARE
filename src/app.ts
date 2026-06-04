@@ -16,17 +16,26 @@ app.use(cookieParser());
 
 app.use("/api/v1", IndexRoutes);
 
+// app.get('/', async (req: Request, res: Response) => {
+//     // throw new AppError(status.BAD_REQUEST,"Just testing error handler");
+//     const specialty = await prisma.specialty.create({
+//         data: {
+//             title: 'cardiology'
+//         }
+//     });
+//     res.status(201).json({
+//         success: true,
+//         message: "API is working",
+//         data: specialty
+//     });
+// });
+
 app.get('/', async (req: Request, res: Response) => {
     // throw new AppError(status.BAD_REQUEST,"Just testing error handler");
-    const specialty = await prisma.specialty.create({
-        data: {
-            title: 'cardiology'
-        }
-    });
+
     res.status(201).json({
         success: true,
         message: "API is working",
-        data: specialty
     });
 });
 
