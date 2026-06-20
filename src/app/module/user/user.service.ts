@@ -1,9 +1,10 @@
 import status from "http-status";
 import { Role, Specialty } from "../../../generated/prisma/client";
-import AppError from "../../errorHelpers/appError";
+
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import { ICreateDoctorPayload } from "./user.interface";
+import AppError from "../../errorHelpers/AppError";
 
 const createDoctor = async (payload: ICreateDoctorPayload) => {
 
@@ -88,7 +89,7 @@ const createDoctor = async (payload: ICreateDoctorPayload) => {
                             emailVerified: true,
                             image: true,
                             isDeleted: true,
-                            deletedsAt: true,
+                            deletedAt: true,
                             createdAt: true,
                             updatedAt: true
                         }

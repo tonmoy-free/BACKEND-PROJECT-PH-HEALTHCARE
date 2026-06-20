@@ -2,8 +2,9 @@ import { NextFunction, Request, Response, Router } from "express";
 import { UserController } from "./user.controller";
 import z from "zod";
 import { Gender } from "../../../generated/prisma/enums";
-import { validateRequest } from "../../shared/validateRequest";
+
 import { createDoctorZodSchema } from "./user.validation";
+import { validateRequest } from "../../../middleware/validateRequest";
 
 
 

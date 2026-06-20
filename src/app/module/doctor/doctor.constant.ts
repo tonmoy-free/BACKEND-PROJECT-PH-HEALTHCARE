@@ -11,18 +11,18 @@ export const doctorIncludeConfig: Partial<Record<keyof Prisma.DoctorInclude, Pri
             specialty: true
         }
     },
-    // appointments: {
-    //     include: {
-    //         patient: true,
-    //         doctor: true,
+    appointments: {
+        include: {
+            patient: true,
+            doctor: true,
 
-    //     }
-    // },
-    // doctorSchedules: {
-    //     include: {
-    //         schedule: true
-    //     }
-    // },
-    // prescriptions: true,
-    // reviews: true,
+        }
+    },
+    doctorSchedules: {
+        include: {
+            schedule: true
+        }
+    },
+    prescriptions: true,
+    reviews: true,
 }

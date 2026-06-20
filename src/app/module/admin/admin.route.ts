@@ -3,7 +3,8 @@ import { Role } from "../../../generated/prisma/enums";
 import { AdminController } from "./admin.controller";
 import { checkAuth } from "../../../middleware/checkAuth";
 import { updateAdminZodSchema } from "./admin.validation";
-import { validateRequest } from "../../shared/validateRequest";
+import { validateRequest } from "../../../middleware/validateRequest";
+
 
 
 const router = Router();
